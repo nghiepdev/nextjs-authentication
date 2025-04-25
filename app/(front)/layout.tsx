@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import {ReactNode} from 'react';
 
+import Nav from './nav';
+
 export default function FrontLayout({children}: {children: ReactNode}) {
   return (
     <div className='min-h-screen flex flex-col'>
@@ -13,28 +15,7 @@ export default function FrontLayout({children}: {children: ReactNode}) {
                 MyApp
               </Link>
             </div>
-            <nav className='space-x-8'>
-              <Link
-                href='/'
-                className='text-gray-700 hover:text-blue-600 font-medium'
-              >
-                Home
-              </Link>
-              <Link
-                href='/dashboard'
-                className='text-gray-700 hover:text-blue-600 font-medium'
-              >
-                Dashboard
-              </Link>
-              <a
-                target='_repo'
-                rel='noreferrer'
-                href='https://github.com/nghiepdev/nextjs-authentication'
-                className='inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700'
-              >
-                Github
-              </a>
-            </nav>
+            <Nav />
           </div>
         </div>
       </header>
