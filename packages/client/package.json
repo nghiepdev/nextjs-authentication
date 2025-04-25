@@ -1,0 +1,13 @@
+{
+  "name": "@app/client",
+  "type": "module",
+  "exports": {
+    ".": {
+      "react-server": "./rsc.ts",
+      "node": "./node.ts",
+      "browser": "./browser.ts",
+      "default": "./browser.ts",
+      "types": "./browser.ts"
+    }
+  }
+}

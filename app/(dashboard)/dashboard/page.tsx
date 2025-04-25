@@ -1,7 +1,10 @@
 'use client';
 
-import Link from 'next/link';
 import {useState} from 'react';
+import Link from 'next/link';
+
+import JsonDisplay from '@/components/json-display';
+import {useSession} from '@/lib/use-session';
 
 // Mock data for the dashboard
 const stats = [
@@ -20,6 +23,8 @@ const navigationItems = [
 
 export default function Dashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const {data: me, isLoading} = useSession();
 
   return (
     <div className='flex h-screen bg-gray-100'>
@@ -155,6 +160,12 @@ export default function Dashboard() {
                   ))}
                 </ul>
               </div>
+            </div>
+
+            <div className='mt-7'>
+              <JsonDisplay reverse>
+                {isLoading ? 'Loading...' : JSON.stringify(me, null, 2)}
+              </JsonDisplay>
             </div>
           </div>
         </main>

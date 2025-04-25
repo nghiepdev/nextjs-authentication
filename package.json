@@ -11,9 +11,12 @@
     "preinstall": "npx only-allow pnpm"
   },
   "dependencies": {
+    "@app/client": "workspace:*",
+    "ky": "^1.8.1",
     "next": "15.3.1",
     "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "react-dom": "^19.1.0",
+    "swr": "^2.3.3"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",

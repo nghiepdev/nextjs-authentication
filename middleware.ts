@@ -24,6 +24,13 @@ export async function middleware(req: NextRequest) {
   const isPublicRoute = publicRoutes.includes(path);
   const accessToken = (await cookies()).get('session')?.value;
 
+  // Proxy backend API
+  if (accessToken && /^\/backend/.test(path)) {
+    const response = NextResponse.next();
+    response.headers.set('Authorization', `Bearer ${accessToken}`);
+    return response;
+  }
+
   // Authentication
   if (isProtectedRoute && !accessToken) {
     return NextResponse.redirect(new URL('/login', req.nextUrl));

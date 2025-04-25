@@ -1,6 +1,15 @@
 import Link from 'next/link';
 
-export default function Home() {
+import {client} from '@app/client';
+import JsonDisplay from '@/components/json-display';
+
+export default async function Home() {
+  const meResponse = await client.get('auth/me', {
+    throwHttpErrors: false,
+  });
+
+  const me = meResponse.ok ? await meResponse.json() : null;
+
   return (
     <div className='bg-white'>
       {/* Hero Section */}
@@ -30,6 +39,9 @@ export default function Home() {
                 Learn more <span aria-hidden='true'>→</span>
               </a>
             </div>
+          </div>
+          <div className='mt-10'>
+            <JsonDisplay>{JSON.stringify(me, null, 2)}</JsonDisplay>
           </div>
         </div>
       </div>

@@ -4,6 +4,17 @@ const nextConfig: NextConfig = {
   experimental: {
     typedEnv: true,
   },
+  async rewrites() {
+    return {
+      beforeFiles: [],
+      afterFiles: [
+        {
+          source: '/backend/:path*',
+          destination: `${process.env.NEXT_PUBLIC_API_URL}/:path*`,
+        },
+      ],
+    };
+  },
 };
 
 export default nextConfig;
