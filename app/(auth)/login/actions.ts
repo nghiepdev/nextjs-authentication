@@ -72,7 +72,7 @@ export async function login(state: LoginFormState | null, formData: FormData) {
 async function createSession(accessToken: string) {
   const cookieStore = await cookies();
   cookieStore.set('session', accessToken, {
-    httpOnly: false,
+    httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
     expires: new Date(Date.now() + 30 * 60 * 1000), // 30 minutes
     sameSite: 'lax',
