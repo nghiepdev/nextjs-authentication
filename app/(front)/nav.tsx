@@ -12,8 +12,11 @@ export default function ProfileAvatar() {
         isLoading && !error ? 'opacity-0' : 'opacity-100'
       }`}
     >
-      <Link href='/' className='text-gray-700 hover:text-blue-600 font-medium'>
-        Home
+      <Link
+        href='/dynamic'
+        className='text-gray-700 hover:text-blue-600 font-medium'
+      >
+        Dynamic
       </Link>
       <Link
         href='/dashboard'
