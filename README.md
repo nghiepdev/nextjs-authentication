@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Authentication In Next.js
 
-## Getting Started
+This is an example project demonstrating how to implement authentication in a Next.js application without using external authentication library SDKs.
+You can view the live demo at: https://next-auth-example-psi.vercel.app
 
-First, run the development server:
+## Overview
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- Uses pnpm workspace to separate environments
+- Implements Middleware and Rewrite techniques to attach Authorization headers in browser environments
+- Leverages React Server Components (RSC) to automatically attach Authorization headers using `await cookies()`
+
+## Usage
+
+### Client Components
+
+Import and use the `useSession()` hook in client components:
+
+```tsx
+'use client';
+
+import {useSession} from '@/lib/use-session';
+
+export default function ClientComponent() {
+  const {data, loading} = useSession();
+
+  if (loading) return <div>Loading...</div>;
+
+  return <div>{data ? `Logged in as ${data.name}` : 'Not logged in'}</div>;
+}
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Server Components (Dynamic)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+For dynamic server components, use `await client`:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```tsx
+import {client} from '@app/client';
 
-## Learn More
+export default async function DynamicPage() {
+  const meResponse = await client.get('auth/me', {
+    throwHttpErrors: false,
+  });
 
-To learn more about Next.js, take a look at the following resources:
+  const me = meResponse.ok ? await meResponse.json() : null;
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+  return <div>{me ? `Logged in as ${me.name}` : 'Not logged in'}</div>;
+}
+```
