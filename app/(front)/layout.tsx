@@ -28,6 +28,7 @@ export default function FrontLayout({children}: {children: ReactNode}) {
               </Link>
               <a
                 target='_repo'
+                rel='noreferrer'
                 href='https://github.com/nghiepdev/nextjs-authentication'
                 className='inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700'
               >

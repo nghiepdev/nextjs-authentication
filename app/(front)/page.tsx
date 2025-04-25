@@ -25,14 +25,25 @@ export default async function Home() {
               comprehensive authentication system.
             </p>
             <div className='mt-10 flex items-center justify-center gap-x-6'>
-              <Link
-                href='/login'
-                className='rounded-md bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-600'
-              >
-                Login
-              </Link>
+              {me ? (
+                <a
+                  href='/logout'
+                  className='rounded-md bg-orange-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-orange-500 focus:outline-none focus:ring-2 focus:ring-orange-600'
+                >
+                  Logout
+                </a>
+              ) : (
+                <Link
+                  href='/login'
+                  className='rounded-md bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-600'
+                >
+                  Login
+                </Link>
+              )}
+
               <a
                 target='_repo'
+                rel='noreferrer'
                 href='https://github.com/nghiepdev/nextjs-authentication'
                 className='text-sm font-semibold leading-6 text-gray-900'
               >
