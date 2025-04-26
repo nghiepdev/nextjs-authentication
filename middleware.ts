@@ -26,9 +26,14 @@ export async function middleware(req: NextRequest) {
 
   // Forwarding authentication from the client to backend API routes
   if (accessToken && /^\/backend/.test(path)) {
-    const response = NextResponse.next();
-    response.headers.set('Authorization', `Bearer ${accessToken}`);
-    return response;
+    const requestHeaders = new Headers(req.headers);
+    requestHeaders.set('Authorization', `Bearer ${accessToken}`);
+
+    return NextResponse.next({
+      request: {
+        headers: requestHeaders,
+      },
+    });
   }
 
   // Authentication
