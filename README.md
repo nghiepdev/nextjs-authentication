@@ -6,7 +6,7 @@ You can view the live demo at: https://next-auth-example-psi.vercel.app
 ## Overview
 
 - Uses pnpm workspace to separate environments
-- Implements Middleware and Rewrite techniques to attach Authorization headers in browser environments
+- Forwarding authentication from the client to backend API routes
 - Leverages React Server Components (RSC) to automatically attach Authorization headers using `await cookies()`
 
 ## Usage

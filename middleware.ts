@@ -24,7 +24,7 @@ export async function middleware(req: NextRequest) {
   const isPublicRoute = publicRoutes.includes(path);
   const accessToken = (await cookies()).get('session')?.value;
 
-  // Proxy backend API
+  // Forwarding authentication from the client to backend API routes
   if (accessToken && /^\/backend/.test(path)) {
     const response = NextResponse.next();
     response.headers.set('Authorization', `Bearer ${accessToken}`);
