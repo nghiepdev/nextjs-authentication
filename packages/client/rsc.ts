@@ -2,7 +2,6 @@ import {baseClient} from './shared';
 import {cookies} from 'next/headers';
 
 export const client = baseClient.extend({
-  prefixUrl: process.env.NEXT_PUBLIC_API_URL,
   hooks: {
     beforeRequest: [
       () => {
