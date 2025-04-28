@@ -4,9 +4,10 @@ import Link from 'next/link';
 
 import JsonDisplay from '@/components/json-display';
 import {useSession} from '@/lib/use-session';
+import Quote from '@/components/quote';
 
 export default function HeroSection() {
-  const {data: me} = useSession({suspense: true});
+  const {data: me} = useSession();
 
   return (
     <div className='mx-auto max-w-2xl py-32 sm:py-48 lg:py-56'>
@@ -46,6 +47,7 @@ export default function HeroSection() {
           </a>
         </div>
       </div>
+      <Quote />
       <div className='mt-10'>
         <JsonDisplay>{JSON.stringify(me, null, 2)}</JsonDisplay>
       </div>

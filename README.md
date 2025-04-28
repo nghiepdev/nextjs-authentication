@@ -1,6 +1,6 @@
-# Authentication In Next.js
+# Example of Authentication in Next.js
 
-This is an example project demonstrating how to implement authentication in a Next.js application without using external authentication library SDKs.
+This is an example project demonstrating how to implement authentication in a Next.js application.  
 You can view the live demo at: https://next-auth-example-psi.vercel.app
 
 ## Overview

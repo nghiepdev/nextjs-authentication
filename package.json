@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "packageManager": "pnpm@10.9.0",
+  "homepage": "https://next-auth-example-psi.vercel.app",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
