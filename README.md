@@ -39,6 +39,7 @@ import {client} from '@app/client';
 export default async function DynamicPage() {
   const meResponse = await client.get('auth/me', {
     throwHttpErrors: false,
+    useAuth: true,
   });
 
   const me = meResponse.ok ? await meResponse.json() : null;

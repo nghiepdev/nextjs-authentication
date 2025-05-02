@@ -7,10 +7,12 @@ export const client = baseClient.extend({
       () => {
         console.log('rsc: beforeRequest');
       },
-      async (request) => {
-        const accessToken = (await cookies()).get('session')?.value;
-        if (accessToken) {
-          request.headers.set('Authorization', `Bearer ${accessToken}`);
+      async (request, options) => {
+        if (options.useAuth) {
+          const accessToken = (await cookies()).get('session')?.value;
+          if (accessToken) {
+            request.headers.set('Authorization', `Bearer ${accessToken}`);
+          }
         }
       },
     ],
