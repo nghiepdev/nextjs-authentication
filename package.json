@@ -2,7 +2,7 @@
   "name": "nextjs-authentication",
   "version": "0.1.0",
   "private": true,
-  "packageManager": "pnpm@10.9.0",
+  "type": "module",
   "homepage": "https://next-auth-example-psi.vercel.app",
   "scripts": {
     "dev": "next dev --turbopack",
@@ -14,7 +14,7 @@
   "dependencies": {
     "@app/client": "workspace:*",
     "ky": "^1.8.1",
-    "next": "15.3.1",
+    "next": "15.5.4",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "swr": "^2.3.3"
@@ -26,12 +26,9 @@
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
     "eslint": "^9.25.1",
-    "eslint-config-next": "15.3.1",
+    "eslint-config-next": "15.5.4",
     "tailwindcss": "^4.1.4",
     "typescript": "^5.8.3"
-  },
-  "engines": {
-    "node": "22"
   },
   "repository": {
     "type": "git",

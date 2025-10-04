@@ -5,7 +5,7 @@ export const client = baseClient.extend({
   hooks: {
     beforeRequest: [
       () => {
-        console.log('rsc: beforeRequest');
+        console.info('rsc: beforeRequest');
       },
       async (request, options) => {
         if (options.useAuth) {

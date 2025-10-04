@@ -4,8 +4,8 @@ export const client = baseClient.extend({
   hooks: {
     beforeRequest: [
       () => {
-        console.warn(
-          '⚠️ If you see this, it means unexpected behavior, please check your code.'
+        throw new Error(
+          `⚠️ You're trying to make a request from a client component on the server side, please check your code.`
         );
       },
     ],

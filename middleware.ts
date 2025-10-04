@@ -1,4 +1,3 @@
-import {cookies} from 'next/headers';
 import type {NextRequest} from 'next/server';
 import {NextResponse} from 'next/server';
 
@@ -22,19 +21,7 @@ export async function middleware(req: NextRequest) {
   const path = req.nextUrl.pathname;
   const isProtectedRoute = protectedRoutes.includes(path);
   const isPublicRoute = publicRoutes.includes(path);
-  const accessToken = (await cookies()).get('session')?.value;
-
-  // Forwarding authentication from the client to backend API routes
-  if (accessToken && /^\/backend/.test(path)) {
-    const requestHeaders = new Headers(req.headers);
-    requestHeaders.set('Authorization', `Bearer ${accessToken}`);
-
-    return NextResponse.next({
-      request: {
-        headers: requestHeaders,
-      },
-    });
-  }
+  const accessToken = req.cookies.get('session')?.value;
 
   // Authentication
   if (isProtectedRoute && !accessToken) {

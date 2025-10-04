@@ -4,12 +4,12 @@ export const client = baseClient.extend({
   hooks: {
     beforeRequest: [
       () => {
-        console.log('browser: beforeRequest');
+        console.info('browser: beforeRequest');
       },
       (request, options) => {
         if (options.useAuth) {
           return new Request(
-            request.url.replace(options.prefixUrl, '/backend/'),
+            request.url.replace(options.prefixUrl, '/api/backend/'),
             request
           );
         }
