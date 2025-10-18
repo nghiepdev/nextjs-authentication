@@ -2,13 +2,11 @@ import {type NextRequest, NextResponse} from 'next/server';
 
 async function handle(
   req: NextRequest,
-  ctx: RouteContext<'/api/[...backend]'>
+  ctx: RouteContext<'/api/backend/[...paths]'>
 ) {
   const accessToken = req.cookies.get('session')?.value;
   if (accessToken) {
-    const {
-      backend: [, ...paths],
-    } = await ctx.params;
+    const {paths} = await ctx.params;
     const nextUrl = new URL(paths.join('/'), process.env.NEXT_PUBLIC_API_URL);
     const response = await fetch(nextUrl, {
       headers: {
