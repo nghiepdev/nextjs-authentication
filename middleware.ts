@@ -23,6 +23,17 @@ export async function middleware(req: NextRequest) {
   const isPublicRoute = publicRoutes.includes(path);
   const accessToken = req.cookies.get('session')?.value;
 
+  // Forwarding authentication from the client to backend API routes
+  if (accessToken && /^\/backend/.test(path)) {
+    const requestHeaders = new Headers(req.headers);
+    requestHeaders.set('Authorization', `Bearer ${accessToken}`);
+    return NextResponse.next({
+      request: {
+        headers: requestHeaders,
+      },
+    });
+  }
+
   // Authentication
   if (isProtectedRoute && !accessToken) {
     return NextResponse.redirect(new URL('/login', req.nextUrl));

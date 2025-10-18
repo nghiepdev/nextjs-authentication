@@ -9,7 +9,7 @@ export const client = baseClient.extend({
       (request, options) => {
         if (options.useAuth) {
           return new Request(
-            request.url.replace(options.prefixUrl, '/api/backend/'),
+            request.url.replace(options.prefixUrl, '/backend/'),
             request
           );
         }
